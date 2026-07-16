@@ -187,3 +187,7 @@ The original Streamlit app is still available:
 pip install -r requirements.txt
 streamlit run github_agent.py
 ```
+
+### docker-tui derived from:
+
+[OXKER.md](OXKER.md)
