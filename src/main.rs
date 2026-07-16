@@ -2,12 +2,12 @@ use anyhow::{bail, Result};
 use clap::{Args, Parser, Subcommand};
 use std::{env, io::Write};
 
-use github_mcp_agent::agent::ToolFilter;
-use github_mcp_agent::openai::{
+use gnostr_mcp_agent::agent::ToolFilter;
+use gnostr_mcp_agent::openai::{
     LlmClient, GITHUB_MODELS_BASE_URL, GITHUB_MODELS_DEFAULT_MODEL, OLLAMA_BASE_URL,
     OLLAMA_DEFAULT_MODEL, OPENAI_BASE_URL, OPENAI_DEFAULT_MODEL,
 };
-use github_mcp_agent::{agent, mcp};
+use gnostr_mcp_agent::{agent, mcp};
 
 #[derive(Parser)]
 #[command(name = "github-mcp-agent")]
@@ -256,7 +256,7 @@ async fn main() -> Result<()> {
             }
             if is_help {
                 let sep = "─".repeat(72);
-                let cname = github_mcp_agent::docker::CONTAINER_NAME;
+                let cname = gnostr_mcp_agent::docker::CONTAINER_NAME;
                 println!(
                     "\n\
                      docker-tui — GitHub MCP Agent wrapper for the oxker Docker TUI\n\
@@ -320,12 +320,12 @@ async fn main() -> Result<()> {
                 return Ok(());
             }
             println!("🔌 Connecting to GitHub MCP server via Docker…");
-            let docker = github_mcp_agent::docker::ensure_ready().await?;
+            let docker = gnostr_mcp_agent::docker::ensure_ready().await?;
             if !github_token.is_empty() {
-                github_mcp_agent::docker::start_mcp_server(&docker, &github_token).await?;
+                gnostr_mcp_agent::docker::start_mcp_server(&docker, &github_token).await?;
             }
-            oxker::setup_tracing();
-            oxker::run_with_args(&args, Some(github_mcp_agent::docker::CONTAINER_NAME.to_string())).await;
+            gnostr_mcp_agent::setup_tracing();
+            gnostr_mcp_agent::run_with_args(&args, Some(gnostr_mcp_agent::docker::CONTAINER_NAME.to_string())).await;
             return Ok(());
         }
     }
