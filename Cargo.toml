@@ -8,6 +8,10 @@ description = "GitHub MCP Agent - Explore GitHub repositories with natural langu
 name = "github-mcp-agent"
 path = "src/main.rs"
 
+[[example]]
+name = "oxker"
+path = "examples/oxker.rs"
+
 [lib]
 name = "gnostr_mcp_agent"
 path = "src/lib.rs"
