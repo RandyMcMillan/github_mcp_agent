@@ -1,6 +1,6 @@
 [package]
-name = "oxker"
-version = "0.13.2"
+name = "gnostr-mcp-agent"
+version = "0.1.0"
 edition = "2024"
 
 [lib]
